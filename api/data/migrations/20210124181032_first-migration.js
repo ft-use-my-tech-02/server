@@ -9,7 +9,7 @@ exports.up = async (knex) => {
       users.string('username', 128).notNullable().unique();
       users.string('password', 128).notNullable();
       users.string('email', 128).notNullable().unique();
-      users.string('propfile_image',200).defaultTo("https://upload.wikimedia.org/wikipedia/commons/9/99/Sample_User_Icon.png");
+      users.string('profile_image',200).defaultTo("https://upload.wikimedia.org/wikipedia/commons/9/99/Sample_User_Icon.png");
       users.string("name", 128).defaultTo("tech");
       users.integer("role_id")
         .unsigned()

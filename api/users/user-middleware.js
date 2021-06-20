@@ -4,7 +4,6 @@ const jwt = require("jsonwebtoken");
 const restrict = (req,res,next)=>{
     const token = req.headers.authorization;
     if(token){
-        console.log(token);
         jwt.verify(token,JWT_SECRECT,(error, decoded)=>{
             if(error){  
                 next({

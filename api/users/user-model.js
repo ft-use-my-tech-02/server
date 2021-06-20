@@ -3,23 +3,15 @@ const db = require('../data/db-config');
 const findBy = (filter) => {
     return db("users").where(filter);
 }
-const findUserById = (id) => {
-    return db("users as u")
-    .join("roles as r","u.role_id","r.role_id")
-    .where("user_id",id)
-    .select("user_id","username","password",
-    "email","profile_image","name","role_name")
-    .first();
+
+const addUser = (user) =>{
+    return db("users").insert(user,["user_id","username",
+    "password","email","profile_image","name","role_id"]);
 }
 
-const addUser = async (user) =>{
-    const [id] = await db("users").insert(user,"user_id");
-    return findUserById(id);
-}
-
-const updateUser = async (id, user) =>{
-    await db("users").where("user_id",id).update(user,["*"]);
-    return findUserById(id);
+const updateUser = (id, user) =>{
+    return db("users").where("user_id",id).update(user,["user_id","username",
+    "password","email","profile_image","name","role_id"]);
 }
 
 module.exports = {

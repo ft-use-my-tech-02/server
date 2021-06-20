@@ -7,7 +7,7 @@ const getRenterRequests = (owner_id) => {
     return db("requests as r")
     .join("items as i","r.item_id","i.item_id")
     .join("users as u","r.renter_id","u.user_id")
-    .select("i.item_id","item_name","username",
+    .select("request_id","i.item_id","item_name","username",
     "name","date_need_item","how_many_days",
     "price_a_day",
     "r.renter_id")
@@ -18,7 +18,7 @@ const getOwnerResponse = (renter_id) => {
     return db("requests as r")
     .join("items as i","r.item_id","i.item_id")
     .join("users as u","r.renter_id","u.user_id")
-    .select("i.item_id","item_name","username",
+    .select("request_id","i.item_id","item_name","username",
     "name","date_need_item","how_many_days",
     "price_a_day",
     "r.renter_id")

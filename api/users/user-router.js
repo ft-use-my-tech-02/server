@@ -1,10 +1,11 @@
 const router = require("express").Router();
 const {
-    restrict
+    restrict,
+    validateChangePassword
 } = require("./user-middleware");
 const users = require("./user-model");
 
-router.put("/:id", restrict, (req,res,next)=>{
+router.put("/:id", restrict, validateChangePassword, (req,res,next)=>{
     users.updateUser(req.params.id, req.body)
     .then(([user])=>{
         res.status(201).json(user)

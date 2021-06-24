@@ -13,4 +13,12 @@ router.put("/:id", restrict, validateChangePassword, (req,res,next)=>{
     .catch(next);
 })
 
+router.get("/:id",restrict, (req,res,next)=>{
+    users.findById(req.params.id)
+    .then(user=>{
+        res.status(200).json(user)
+    })
+    .catch(next);
+})
+
 module.exports = router;

@@ -16,6 +16,7 @@ router.post("/login",validateLoginInfo,validateUsernameExists,(req,res,next)=>{
         res.status(200).json({
             message:`Welcome back ${req.user.username}`,
             user_id: req.user.user_id,
+            role_id: req.user.role_id,
             token
         })
     }else{

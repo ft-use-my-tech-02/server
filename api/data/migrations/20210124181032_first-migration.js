@@ -9,8 +9,8 @@ exports.up = async (knex) => {
       users.string('username', 128).notNullable().unique();
       users.string('password', 128).notNullable();
       users.string('email', 128).notNullable();
-      users.string('profile_image',200).defaultTo("https://upload.wikimedia.org/wikipedia/commons/9/99/Sample_User_Icon.png");
-      users.string("name", 128).defaultTo("tech");
+      users.string('profile_image', 200).defaultTo("https://upload.wikimedia.org/wikipedia/commons/9/99/Sample_User_Icon.png");
+      users.string("name", 128).notNullable();
       users.integer("role_id")
         .unsigned()
         .notNullable()
@@ -19,9 +19,9 @@ exports.up = async (knex) => {
         .onDelete("CASCADE")
         .onUpdate("CASCADE")
     })
-    .createTable("items", items=>{
+    .createTable("items", items => {
       items.increments("item_id");
-      items.string("item_name",200).notNullable();
+      items.string("item_name", 200).notNullable();
       items.integer("owner_id")
         .unsigned()
         .notNullable()
@@ -38,9 +38,9 @@ exports.up = async (knex) => {
       items.decimal("price_a_day")
         .unsigned()
         .notNullable();
-      items.string("notes",300);
+      items.string("notes", 300);
     })
-    .createTable("requests",requests =>{
+    .createTable("requests", requests => {
       requests.increments("request_id");
       requests.integer("item_id")
         .unsigned()
@@ -56,7 +56,7 @@ exports.up = async (knex) => {
         .inTable("users")
         .onDelete("CASCADE")
         .onUpdate("CASCADE");
-      requests.string("notes",200);
+      requests.string("notes", 200);
       requests.string("date_need_item").notNullable();
       requests.integer("how_many_days").unsigned().notNullable();
     })
@@ -64,8 +64,8 @@ exports.up = async (knex) => {
 
 exports.down = async (knex) => {
   await knex.schema
-  .dropTableIfExists('requests')
-  .dropTableIfExists('items')
-  .dropTableIfExists('users')
-  .dropTableIfExists('roles')
+    .dropTableIfExists('requests')
+    .dropTableIfExists('items')
+    .dropTableIfExists('users')
+    .dropTableIfExists('roles')
 }

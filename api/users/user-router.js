@@ -2,7 +2,6 @@
 const router = require("express").Router();
 const nodemailer = require("nodemailer");
 
-
 const {
     restrict,
     validateChangePassword
@@ -14,8 +13,9 @@ const transporter = nodemailer.createTransport({
     port: 465,
     secure: true,
     auth: {
-        user: "otherusage237@gmail.com",
-        pass: "Zac2633asd",
+        user: process.env.TRANSPORTER,
+        pass: process.env.PASS,
+
     },
 })
 
@@ -35,13 +35,12 @@ router.get("/:id", restrict, (req, res, next) => {
         .catch(next);
 })
 
-router.post("/", async (req, res, next) => {
+router.post("/", (req, res, next) => {
     const { feedback } = req.body;
 
-
     const msg = {
-        from: "otherusage237@gmail.com",
-        to: "blackenjoy237@gmail.com",
+        from: process.env.TRANSPORTER,
+        to: process.env.RECEIVER,
         subject: "New Feedback For Use My Tech",
         text: `${feedback}`
     }

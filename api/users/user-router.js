@@ -45,8 +45,6 @@ router.post("/", (req, res, next) => {
 
     transporter.sendMail(msg, (error) => {
         if (error) {
-            console.log(typeof process.env.TRANSPORTER);
-            console.log(process.env.PASS);
             res.json(error);
         } else {
             res.json("Thanks for your feedback!");

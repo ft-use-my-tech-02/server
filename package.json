@@ -3,9 +3,9 @@
   "version": "1.0.0",
   "scripts": {
     "start": "node index.js",
-    "server": "nodemon index.js",
-    "migrate": "knex migrate:latest",
-    "rollback": "knex migrate:rollback",
+    "dev": "nodemon index.js",
+    "up": "knex migrate:latest",
+    "down": "knex migrate:rollback",
     "seed": "knex seed:run",
     "migrateh": "heroku run knex migrate:latest -a ft-use-my-tech-02",
     "rollbackh": "heroku run knex migrate:rollback -a ft-use-my-tech-02",

@@ -8,7 +8,7 @@ const {
 } = require("./item-middleware");
 
 //middleware for checking the input
-router.get("/",restrict,(req,res,next)=>{
+router.get("/",(req,res,next)=>{
     items.getAvailableItems()
     .then(allItems =>{
         res.json(allItems)

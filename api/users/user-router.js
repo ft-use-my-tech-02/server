@@ -1,3 +1,4 @@
+
 const router = require("express").Router();
 const nodemailer = require("nodemailer");
 
@@ -14,6 +15,7 @@ const transporter = nodemailer.createTransport({
     auth: {
         user: process.env.TRANSPORTER,
         pass: process.env.PASS,
+
     },
 })
 
